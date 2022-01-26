@@ -1,0 +1,27 @@
+extension String {
+    public subscript (i: Int) -> Character {
+        let ind: String.Index = self.index(self.startIndex, offsetBy: i)
+        return self[ind]
+    }
+
+    public func index(_ offset: Int) -> String.Index {
+        return self.index(self.startIndex, offsetBy: offset)
+    }
+
+    public subscript (range: ClosedRange<Int>) -> String {
+        let lower = range.lowerBound, upper = range.upperBound
+        return String(self[self.index(lower)...self.index(upper)])
+    }
+    public subscript (range: Range<Int>) -> String {
+        let lower = range.lowerBound, upper = range.upperBound
+        return String(self[self.index(lower)..<self.index(upper)])
+    }
+    public subscript (range: PartialRangeFrom<Int>) -> String {
+        let lower = range.lowerBound
+        return String(self[self.index(lower)..<self.endIndex])
+    }
+
+    public func reversedStr() -> String {
+        return String(self.reversed())
+    }
+}
